@@ -121,7 +121,7 @@ service_triggers() {
 	# this only watches interfaces for which there is no running instance due to interface down / not in ubus
 	# hence start not reload, this trigger will not affect running instances as another start will not change their procd command arguments
 	# or stop the already running process
-        [ -n "$trigger_interfaces" ] & {
+        [ -n "$trigger_interfaces" ] && {
                 for n in $trigger_interfaces ; do
 			procd_add_interface_trigger "interface.*" $n /etc/init.d/mini_snmpd start
                 done
